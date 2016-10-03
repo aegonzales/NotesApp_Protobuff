@@ -22,13 +22,14 @@ namespace Notebook {
     static NotesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cgtub3Rlcy5wcm90byImCgROb3RlEg0KBXRpdGxlGAEgASgJEg8KB21lc3Nh",
-            "Z2UYAyABKAkiIAoIQXJjaGlldmUSFAoFTm90ZXMYASADKAsyBS5Ob3RlQguq",
-            "AghOb3RlYm9va2IGcHJvdG8z"));
+            "Cgtub3Rlcy5wcm90byJOCgROb3RlEg0KBXRpdGxlGAEgASgJEg8KB21lc3Nh",
+            "Z2UYAiABKAkSEgoKY3JlYXRlRGF0ZRgDIAEoCRISCgp1cGRhdGVEYXRlGAQg",
+            "ASgJIiAKCEFyY2hpZXZlEhQKBU5vdGVzGAEgAygLMgUuTm90ZUILqgIITm90",
+            "ZWJvb2tiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Notebook.Note), global::Notebook.Note.Parser, new[]{ "Title", "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Notebook.Note), global::Notebook.Note.Parser, new[]{ "Title", "Message", "CreateDate", "UpdateDate" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Notebook.Archieve), global::Notebook.Archieve.Parser, new[]{ "Notes" }, null, null, null)
           }));
     }
@@ -65,6 +66,8 @@ namespace Notebook {
     public Note(Note other) : this() {
       title_ = other.title_;
       message_ = other.message_;
+      createDate_ = other.createDate_;
+      updateDate_ = other.updateDate_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -84,13 +87,35 @@ namespace Notebook {
     }
 
     /// <summary>Field number for the "message" field.</summary>
-    public const int MessageFieldNumber = 3;
+    public const int MessageFieldNumber = 2;
     private string message_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Message {
       get { return message_; }
       set {
         message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "createDate" field.</summary>
+    public const int CreateDateFieldNumber = 3;
+    private string createDate_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string CreateDate {
+      get { return createDate_; }
+      set {
+        createDate_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "updateDate" field.</summary>
+    public const int UpdateDateFieldNumber = 4;
+    private string updateDate_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string UpdateDate {
+      get { return updateDate_; }
+      set {
+        updateDate_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -109,6 +134,8 @@ namespace Notebook {
       }
       if (Title != other.Title) return false;
       if (Message != other.Message) return false;
+      if (CreateDate != other.CreateDate) return false;
+      if (UpdateDate != other.UpdateDate) return false;
       return true;
     }
 
@@ -117,6 +144,8 @@ namespace Notebook {
       int hash = 1;
       if (Title.Length != 0) hash ^= Title.GetHashCode();
       if (Message.Length != 0) hash ^= Message.GetHashCode();
+      if (CreateDate.Length != 0) hash ^= CreateDate.GetHashCode();
+      if (UpdateDate.Length != 0) hash ^= UpdateDate.GetHashCode();
       return hash;
     }
 
@@ -132,8 +161,16 @@ namespace Notebook {
         output.WriteString(Title);
       }
       if (Message.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(Message);
+      }
+      if (CreateDate.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(CreateDate);
+      }
+      if (UpdateDate.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(UpdateDate);
       }
     }
 
@@ -145,6 +182,12 @@ namespace Notebook {
       }
       if (Message.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+      }
+      if (CreateDate.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(CreateDate);
+      }
+      if (UpdateDate.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UpdateDate);
       }
       return size;
     }
@@ -160,6 +203,12 @@ namespace Notebook {
       if (other.Message.Length != 0) {
         Message = other.Message;
       }
+      if (other.CreateDate.Length != 0) {
+        CreateDate = other.CreateDate;
+      }
+      if (other.UpdateDate.Length != 0) {
+        UpdateDate = other.UpdateDate;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -174,8 +223,16 @@ namespace Notebook {
             Title = input.ReadString();
             break;
           }
-          case 26: {
+          case 18: {
             Message = input.ReadString();
+            break;
+          }
+          case 26: {
+            CreateDate = input.ReadString();
+            break;
+          }
+          case 34: {
+            UpdateDate = input.ReadString();
             break;
           }
         }
